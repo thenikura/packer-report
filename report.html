@@ -1,15 +1,64 @@
 
 <!DOCTYPE html>
 <html>
-<head><meta charset="utf-8"><title>Linnworks Pack Report</title></head>
+<head>
+<meta charset="utf-8">
+<title>Linnworks Pack Report</title>
+<style>
+  body {
+    font-family: system-ui, Arial, sans-serif;
+    margin: 20px;
+    max-width: 1200px;
+    line-height: 1.4;
+  }
+  h3 {
+    margin-top: 32px;
+    margin-bottom: 12px;
+    color: #333;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+    table-layout: fixed;
+    word-wrap: break-word;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 6px 8px;
+    font-size: 13px;
+    text-align: center;
+  }
+  thead th {
+    background-color: #f8f8f8;
+    font-weight: 600;
+  }
+  tbody tr:nth-child(even) td {
+    background-color: #fafafa;
+  }
+  svg {
+    display: block;
+    margin: 10px auto 30px auto;
+  }
+</style>
+</head>
 <body>
-<h3>Dispatched per hour (compact)</h3>
+<h1 style="margin-bottom:20px;">Linnworks Packing Report</h1>
+
+<h3>Dispatched per Hour (Compact)</h3>
 <table style="border-collapse:collapse;width:100%"><thead><tr><th>User</th><th>Total Dispatched</th><th>8am-9am</th><th>9am-10am</th><th>10am-11am</th><th>11am-Noon</th><th>Noon-1pm</th><th>1pm-2pm</th><th>2pm-3pm</th></tr></thead><tbody><tr><td>packer1@nikura.com</td><td>85</td><td>1</td><td>20</td><td>9</td><td>16</td><td>17</td><td>17</td><td>5</td></tr><tr><td>packer1@nikura.com Avg/min Order</td><td></td><td>0</td><td>3m 2s</td><td>5m 39s</td><td>3m 53s</td><td>3m 30s</td><td>3m 34s</td><td>1m 20s</td></tr><tr><td>packer9@nikura.com</td><td>56</td><td>0</td><td>0</td><td>13</td><td>17</td><td>7</td><td>19</td><td>0</td></tr><tr><td>packer9@nikura.com Avg/min Order</td><td></td><td>0</td><td>0</td><td>1m 58s</td><td>3m 28s</td><td>5m 59s</td><td>2m 4s</td><td>0</td></tr></tbody></table>
-<h3>Dispatched per hour (chart)</h3>
+
+<h3>Dispatched per Hour (Chart)</h3>
 <svg width="700" height="320" xmlns="http://www.w3.org/2000/svg"><g transform="translate(50,30)"><line x1="0" y1="220" x2="630" y2="220" stroke="#eee"/><text x="-6" y="224" text-anchor="end" font-size="11">0</text><line x1="0" y1="165" x2="630" y2="165" stroke="#eee"/><text x="-6" y="169" text-anchor="end" font-size="11">5</text><line x1="0" y1="110" x2="630" y2="110" stroke="#eee"/><text x="-6" y="114" text-anchor="end" font-size="11">10</text><line x1="0" y1="55" x2="630" y2="55" stroke="#eee"/><text x="-6" y="59" text-anchor="end" font-size="11">15</text><line x1="0" y1="0" x2="630" y2="0" stroke="#eee"/><text x="-6" y="4" text-anchor="end" font-size="11">20</text><text x="45" y="238" text-anchor="middle" font-size="11">8am-9am</text><text x="135" y="238" text-anchor="middle" font-size="11">9am-10am</text><text x="225" y="238" text-anchor="middle" font-size="11">10am-11am</text><text x="315" y="238" text-anchor="middle" font-size="11">11am-Noon</text><text x="405" y="238" text-anchor="middle" font-size="11">Noon-1pm</text><text x="495" y="238" text-anchor="middle" font-size="11">1pm-2pm</text><text x="585" y="238" text-anchor="middle" font-size="11">2pm-3pm</text><rect x="6" y="209" width="36" height="11" fill="#5B8FF9"/><rect x="48" y="220" width="36" height="0" fill="#5AD8A6"/><rect x="96" y="0" width="36" height="220" fill="#5B8FF9"/><rect x="138" y="220" width="36" height="0" fill="#5AD8A6"/><rect x="186" y="121" width="36" height="99" fill="#5B8FF9"/><rect x="228" y="77" width="36" height="143" fill="#5AD8A6"/><rect x="276" y="44" width="36" height="176" fill="#5B8FF9"/><rect x="318" y="33" width="36" height="187" fill="#5AD8A6"/><rect x="366" y="33" width="36" height="187" fill="#5B8FF9"/><rect x="408" y="143" width="36" height="77" fill="#5AD8A6"/><rect x="456" y="33" width="36" height="187" fill="#5B8FF9"/><rect x="498" y="11" width="36" height="209" fill="#5AD8A6"/><rect x="546" y="165" width="36" height="55" fill="#5B8FF9"/><rect x="588" y="220" width="36" height="0" fill="#5AD8A6"/></g></svg>
-<h3>Avg minutes per order (chart)</h3>
+
+<h3>Average Minutes per Order (Chart)</h3>
 <svg width="700" height="320" xmlns="http://www.w3.org/2000/svg"><g transform="translate(50,30)"><line x1="0" y1="220" x2="630" y2="220" stroke="#eee"/><text x="-6" y="224" text-anchor="end" font-size="11">0</text><line x1="0" y1="183.19793239292898" x2="630" y2="183.19793239292898" stroke="#eee"/><text x="-6" y="187.19793239292898" text-anchor="end" font-size="11">1</text><line x1="0" y1="109.59379717878694" x2="630" y2="109.59379717878694" stroke="#eee"/><text x="-6" y="113.59379717878694" text-anchor="end" font-size="11">3</text><line x1="0" y1="72.79172957171593" x2="630" y2="72.79172957171593" stroke="#eee"/><text x="-6" y="76.79172957171593" text-anchor="end" font-size="11">4</text><line x1="0" y1="-0.8124056424261141" x2="630" y2="-0.8124056424261141" stroke="#eee"/><text x="-6" y="3.187594357573886" text-anchor="end" font-size="11">6</text><text x="45" y="238" text-anchor="middle" font-size="11">8am-9am</text><text x="135" y="238" text-anchor="middle" font-size="11">9am-10am</text><text x="225" y="238" text-anchor="middle" font-size="11">10am-11am</text><text x="315" y="238" text-anchor="middle" font-size="11">11am-Noon</text><text x="405" y="238" text-anchor="middle" font-size="11">Noon-1pm</text><text x="495" y="238" text-anchor="middle" font-size="11">1pm-2pm</text><text x="585" y="238" text-anchor="middle" font-size="11">2pm-3pm</text><rect x="6" y="220" width="36" height="0" fill="#5B8FF9"/><rect x="48" y="220" width="36" height="0" fill="#5AD8A6"/><rect x="96" y="108.42213556323341" width="36" height="111.57786443676659" fill="#5B8FF9"/><rect x="138" y="220" width="36" height="0" fill="#5AD8A6"/><rect x="186" y="12.301397781560212" width="36" height="207.6986022184398" fill="#5B8FF9"/><rect x="228" y="147.73505113489307" width="36" height="72.26494886510694" fill="#5AD8A6"/><rect x="276" y="77.28624341500881" width="36" height="142.7137565849912" fill="#5B8FF9"/><rect x="318" y="92.2777726663795" width="36" height="127.7222273336205" fill="#5AD8A6"/><rect x="366" y="91.12747804073601" width="36" height="128.872521959264" fill="#5B8FF9"/><rect x="408" y="0" width="36" height="220" fill="#5AD8A6"/><rect x="456" y="88.62811928888365" width="36" height="131.37188071111635" fill="#5B8FF9"/><rect x="498" y="144.11924799249832" width="36" height="75.88075200750168" fill="#5AD8A6"/><rect x="546" y="171.13053442457038" width="36" height="48.86946557542961" fill="#5B8FF9"/><rect x="588" y="220" width="36" height="0" fill="#5AD8A6"/></g></svg>
+
 <h3>Total Dispatched</h3>
 <table style="border-collapse:collapse;width:40%;margin-top:10px"><thead><tr><th>User</th><th>Total</th></tr></thead><tbody><tr><td>packer1@nikura.com</td><td>85</td></tr><tr><td>packer9@nikura.com</td><td>56</td></tr></tbody></table>
+
+<p style="margin-top:40px;font-size:12px;color:#777;">
+Report generated automatically via Postman → GitHub Pages
+</p>
 </body>
 </html>
