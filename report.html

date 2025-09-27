@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><title>Linnworks Report</title></head>
+<body>
+
+<style>
+body{font-family:system-ui,Arial,sans-serif}
+h3{margin:6px 0 4px;}
+table{border-collapse:collapse;width:100%;margin-top:6px}
+th,td{border:1px solid #e2e2e2;padding:6px 8px;font-size:12px;text-align:center}
+th.sticky,td.sticky{position:sticky;left:0;background:#fff;z-index:1}
+thead th{background:#fafafa}
+tbody tr:nth-child(even) td{background:#fbfbfb}
+.chart svg{display:block;}
+.chart{margin:6px 0 0;}
+</style>
+<div>
+  <h3>Dispatched per hour (compact)</h3>
+  <table>
+    <thead>
+      <tr>
+        <th class="sticky">User</th>
+        <th>Total Dispatched</th>
+        {{#each headers}}<th>{{this}}</th>{{/each}}
+      </tr>
+    </thead>
+    <tbody>
+      {{#each compact}}
+        <tr>
+          <td class="sticky">{{userLabel}}</td>
+          <td>{{total}}</td>
+          {{#each buckets}}<td>{{this}}</td>{{/each}}
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  <div class="chart"><h3>Dispatched per hour (grouped bar chart)</h3>{{{svgOrders}}}</div>
+  <div class="chart"><h3>Avg minutes per order (grouped bar chart)</h3>{{{svgAvg}}}</div>
+</div>
+
+</body>
+</html>
