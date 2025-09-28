@@ -5,58 +5,243 @@
 <meta charset="utf-8">
 <title>Linnworks Pack Report</title>
 <style>
-body{font-family:system-ui,Arial,sans-serif;margin:20px;max-width:1200px;}
-h3{margin-top:28px;margin-bottom:12px;}
-.filters{position:fixed;right:30px;top:30px;border:1px solid #ccc;padding:12px;background:#fafafa;border-radius:6px;}
-table{border-collapse:collapse;width:100%;margin-bottom:20px;table-layout:fixed;}
-th,td{border:1px solid #ddd;padding:6px 8px;font-size:13px;text-align:center;}
-thead th{background:#f8f8f8;font-weight:600;}
-tbody tr:nth-child(even) td{background:#fafafa;}
-svg{display:block;margin:10px auto 30px auto;}
+  body{font-family:system-ui,Arial,sans-serif;margin:20px;max-width:1200px;}
+  h3{margin-top:28px;margin-bottom:12px;}
+  .panels{display:flex;gap:16px;flex-wrap:wrap;}
+  .filters{border:1px solid #ccc;padding:12px;background:#fafafa;border-radius:6px;min-width:260px}
+  table{border-collapse:collapse;width:100%;margin-bottom:20px;table-layout:fixed;}
+  th,td{border:1px solid #ddd;padding:6px 8px;font-size:13px;text-align:center;}
+  thead th{background:#f8f8f8;font-weight:600;}
+  tbody tr:nth-child(even) td{background:#fafafa;}
+  svg{display:block;margin:10px auto 30px auto;}
+  label{display:inline-block;margin:4px 0;}
 </style>
 </head>
 <body>
 
 <h1>Linnworks Packing Report</h1>
 
-<div class="filters">
-  <strong>Show Packers:</strong><br/>
-  <label><input type="checkbox" class="user-toggle" data-user="packer1@nikura.com" /> packer1@nikura.com</label><br/><label><input type="checkbox" class="user-toggle" data-user="packer9@nikura.com" checked/> packer9@nikura.com</label><br/>
+<div class="panels">
+  <div class="filters">
+    <strong>Processed Date Range</strong><br/>
+    <label>From: <input type="date" id="fromDate"></label><br/>
+    <label>To: <input type="date" id="toDate"></label><br/>
+    <button id="applyBtn">Apply</button>
+    <div id="rangeInfo" style="margin-top:6px;color:#555;font-size:12px"></div>
+  </div>
+
+  <div class="filters">
+    <strong>Show Packers</strong><br/>
+    <label><input type="checkbox" class="user-toggle" data-user="packer1@nikura.com" checked/> packer1@nikura.com</label><br/><label><input type="checkbox" class="user-toggle" data-user="packer9@nikura.com" checked/> packer9@nikura.com</label><br/>
+  </div>
 </div>
 
 <h3>Dispatched per Hour (Compact)</h3>
-<div id="table-wrapper"><table><thead><tr><th>User</th><th>Total Dispatched</th><th>8am-9am</th><th>9am-10am</th><th>10am-11am</th><th>11am-Noon</th><th>Noon-1pm</th><th>1pm-2pm</th><th>2pm-3pm</th></tr></thead><tbody><tr data-user="packer1@nikura.com"><td>packer1@nikura.com</td><td>85</td><td>1</td><td>20</td><td>9</td><td>16</td><td>17</td><td>17</td><td>5</td></tr><tr data-user="packer1@nikura.com"><td>packer1@nikura.com Avg/min Order</td><td></td><td>0</td><td>3m 2s</td><td>5m 39s</td><td>3m 53s</td><td>3m 30s</td><td>3m 34s</td><td>1m 20s</td></tr><tr data-user="packer9@nikura.com"><td>packer9@nikura.com</td><td>56</td><td>0</td><td>0</td><td>13</td><td>17</td><td>7</td><td>19</td><td>0</td></tr><tr data-user="packer9@nikura.com"><td>packer9@nikura.com Avg/min Order</td><td></td><td>0</td><td>0</td><td>1m 58s</td><td>3m 28s</td><td>5m 59s</td><td>2m 4s</td><td>0</td></tr></tbody></table></div>
+<div id="table-wrapper"></div>
 
 <h3>Dispatched per Hour (Chart)</h3>
-<div id="chart-orders"><svg width="700" height="320" xmlns="http://www.w3.org/2000/svg"><g transform="translate(50,30)"><line x1="0" y1="220" x2="630" y2="220" stroke="#eee"/><text x="-6" y="224" text-anchor="end" font-size="11">0</text><line x1="0" y1="165" x2="630" y2="165" stroke="#eee"/><text x="-6" y="169" text-anchor="end" font-size="11">5</text><line x1="0" y1="110" x2="630" y2="110" stroke="#eee"/><text x="-6" y="114" text-anchor="end" font-size="11">10</text><line x1="0" y1="55" x2="630" y2="55" stroke="#eee"/><text x="-6" y="59" text-anchor="end" font-size="11">15</text><line x1="0" y1="0" x2="630" y2="0" stroke="#eee"/><text x="-6" y="4" text-anchor="end" font-size="11">20</text><text x="45" y="238" text-anchor="middle" font-size="11">8am-9am</text><text x="135" y="238" text-anchor="middle" font-size="11">9am-10am</text><text x="225" y="238" text-anchor="middle" font-size="11">10am-11am</text><text x="315" y="238" text-anchor="middle" font-size="11">11am-Noon</text><text x="405" y="238" text-anchor="middle" font-size="11">Noon-1pm</text><text x="495" y="238" text-anchor="middle" font-size="11">1pm-2pm</text><text x="585" y="238" text-anchor="middle" font-size="11">2pm-3pm</text><rect data-series="0" x="6" y="209" width="36" height="11" fill="#5B8FF9"/><rect data-series="1" x="48" y="220" width="36" height="0" fill="#5AD8A6"/><rect data-series="0" x="96" y="0" width="36" height="220" fill="#5B8FF9"/><rect data-series="1" x="138" y="220" width="36" height="0" fill="#5AD8A6"/><rect data-series="0" x="186" y="121" width="36" height="99" fill="#5B8FF9"/><rect data-series="1" x="228" y="77" width="36" height="143" fill="#5AD8A6"/><rect data-series="0" x="276" y="44" width="36" height="176" fill="#5B8FF9"/><rect data-series="1" x="318" y="33" width="36" height="187" fill="#5AD8A6"/><rect data-series="0" x="366" y="33" width="36" height="187" fill="#5B8FF9"/><rect data-series="1" x="408" y="143" width="36" height="77" fill="#5AD8A6"/><rect data-series="0" x="456" y="33" width="36" height="187" fill="#5B8FF9"/><rect data-series="1" x="498" y="11" width="36" height="209" fill="#5AD8A6"/><rect data-series="0" x="546" y="165" width="36" height="55" fill="#5B8FF9"/><rect data-series="1" x="588" y="220" width="36" height="0" fill="#5AD8A6"/></g></svg></div>
+<div id="chart-orders"></div>
 
 <h3>Average Minutes per Order (Chart)</h3>
-<div id="chart-avg"><svg width="700" height="320" xmlns="http://www.w3.org/2000/svg"><g transform="translate(50,30)"><line x1="0" y1="220" x2="630" y2="220" stroke="#eee"/><text x="-6" y="224" text-anchor="end" font-size="11">0</text><line x1="0" y1="183.19793239292898" x2="630" y2="183.19793239292898" stroke="#eee"/><text x="-6" y="187.19793239292898" text-anchor="end" font-size="11">1</text><line x1="0" y1="109.59379717878694" x2="630" y2="109.59379717878694" stroke="#eee"/><text x="-6" y="113.59379717878694" text-anchor="end" font-size="11">3</text><line x1="0" y1="72.79172957171593" x2="630" y2="72.79172957171593" stroke="#eee"/><text x="-6" y="76.79172957171593" text-anchor="end" font-size="11">4</text><line x1="0" y1="-0.8124056424261141" x2="630" y2="-0.8124056424261141" stroke="#eee"/><text x="-6" y="3.187594357573886" text-anchor="end" font-size="11">6</text><text x="45" y="238" text-anchor="middle" font-size="11">8am-9am</text><text x="135" y="238" text-anchor="middle" font-size="11">9am-10am</text><text x="225" y="238" text-anchor="middle" font-size="11">10am-11am</text><text x="315" y="238" text-anchor="middle" font-size="11">11am-Noon</text><text x="405" y="238" text-anchor="middle" font-size="11">Noon-1pm</text><text x="495" y="238" text-anchor="middle" font-size="11">1pm-2pm</text><text x="585" y="238" text-anchor="middle" font-size="11">2pm-3pm</text><rect data-series="0" x="6" y="220" width="36" height="0" fill="#5B8FF9"/><rect data-series="1" x="48" y="220" width="36" height="0" fill="#5AD8A6"/><rect data-series="0" x="96" y="108.42213556323341" width="36" height="111.57786443676659" fill="#5B8FF9"/><rect data-series="1" x="138" y="220" width="36" height="0" fill="#5AD8A6"/><rect data-series="0" x="186" y="12.301397781560212" width="36" height="207.6986022184398" fill="#5B8FF9"/><rect data-series="1" x="228" y="147.73505113489307" width="36" height="72.26494886510694" fill="#5AD8A6"/><rect data-series="0" x="276" y="77.28624341500881" width="36" height="142.7137565849912" fill="#5B8FF9"/><rect data-series="1" x="318" y="92.2777726663795" width="36" height="127.7222273336205" fill="#5AD8A6"/><rect data-series="0" x="366" y="91.12747804073601" width="36" height="128.872521959264" fill="#5B8FF9"/><rect data-series="1" x="408" y="0" width="36" height="220" fill="#5AD8A6"/><rect data-series="0" x="456" y="88.62811928888365" width="36" height="131.37188071111635" fill="#5B8FF9"/><rect data-series="1" x="498" y="144.11924799249832" width="36" height="75.88075200750168" fill="#5AD8A6"/><rect data-series="0" x="546" y="171.13053442457038" width="36" height="48.86946557542961" fill="#5B8FF9"/><rect data-series="1" x="588" y="220" width="36" height="0" fill="#5AD8A6"/></g></svg></div>
+<div id="chart-avg"></div>
 
 <h3>Total Dispatched</h3>
-<div id="totals-table"><table style="width:40%;margin-top:10px"><thead><tr><th>User</th><th>Total</th></tr></thead><tbody><tr data-user="packer1@nikura.com"><td>packer1@nikura.com</td><td>85</td></tr><tr data-user="packer9@nikura.com"><td>packer9@nikura.com</td><td>56</td></tr></tbody></table></div>
+<div id="totals-table"></div>
 
 <script>
-const toggles = document.querySelectorAll('.user-toggle');
-const allUsers = ["packer1@nikura.com","packer9@nikura.com"];
-function filterDisplay(){
-  const selected = Array.from(toggles).filter(t=>t.checked).map(t=>t.dataset.user);
+// ---- Embedded data from Postman ----
+const RAW_EVENTS = [{"user":"packer1@nikura.com","date":"2025-09-27T13:07:24.433Z"},{"user":"packer1@nikura.com","date":"2025-09-27T13:05:24.59Z"},{"user":"packer1@nikura.com","date":"2025-09-27T13:04:45.073Z"},{"user":"packer1@nikura.com","date":"2025-09-27T13:03:44.733Z"},{"user":"packer1@nikura.com","date":"2025-09-27T13:02:05.737Z"},{"user":"packer1@nikura.com","date":"2025-09-27T12:59:59.19Z"},{"user":"packer1@nikura.com","date":"2025-09-27T12:59:13.38Z"},{"user":"packer1@nikura.com","date":"2025-09-27T12:57:33.477Z"},{"user":"packer9@nikura.com","date":"2025-09-27T12:49:58.983Z"},{"user":"packer1@nikura.com","date":"2025-09-27T12:49:47.953Z"},{"user":"packer1@nikura.com","date":"2025-09-27T12:49:17.587Z"},{"user":"packer1@nikura.com","date":"2025-09-27T12:46:33.18Z"},{"user":"packer9@nikura.com","date":"2025-09-27T12:46:22.703Z"},{"user":"packer9@nikura.com","date":"2025-09-27T12:44:19.503Z"},{"user":"packer9@nikura.com","date":"2025-09-27T12:42:35.76Z"},{"user":"packer9@nikura.com","date":"2025-09-27T12:41:16.023Z"},{"user":"packer9@nikura.com","date":"2025-09-27T12:40:11.903Z"},{"user":"packer9@nikura.com","date":"2025-09-27T12:39:05.35Z"},{"user":"packer9@nikura.com","date":"2025-09-27T12:38:10.307Z"},{"user":"packer1@nikura.com","date":"2025-09-27T12:37:22.947Z"},{"user":"packer9@nikura.com","date":"2025-09-27T12:36:42.447Z"},{"user":"packer9@nikura.com","date":"2025-09-27T12:35:12.38Z"},{"user":"packer9@nikura.com","date":"2025-09-27T12:33:14.873Z"},{"user":"packer9@nikura.com","date":"2025-09-27T12:26:27.29Z"},{"user":"packer1@nikura.com","date":"2025-09-27T12:21:57.523Z"},{"user":"packer1@nikura.com","date":"2025-09-27T12:21:18.46Z"},{"user":"packer9@nikura.com","date":"2025-09-27T12:21:06.32Z"},{"user":"packer1@nikura.com","date":"2025-09-27T12:20:18.073Z"},{"user":"packer9@nikura.com","date":"2025-09-27T12:19:44.77Z"},{"user":"packer1@nikura.com","date":"2025-09-27T12:19:08.083Z"},{"user":"packer9@nikura.com","date":"2025-09-27T12:18:21.307Z"},{"user":"packer1@nikura.com","date":"2025-09-27T12:17:50.053Z"},{"user":"packer9@nikura.com","date":"2025-09-27T12:15:45.587Z"},{"user":"packer1@nikura.com","date":"2025-09-27T12:15:40.457Z"},{"user":"packer9@nikura.com","date":"2025-09-27T12:14:55.36Z"},{"user":"packer9@nikura.com","date":"2025-09-27T12:14:00.667Z"},{"user":"packer9@nikura.com","date":"2025-09-27T12:12:52.173Z"},{"user":"packer1@nikura.com","date":"2025-09-27T12:12:21.657Z"},{"user":"packer1@nikura.com","date":"2025-09-27T12:07:41.793Z"},{"user":"packer1@nikura.com","date":"2025-09-27T12:04:23.46Z"},{"user":"packer1@nikura.com","date":"2025-09-27T12:02:52.29Z"},{"user":"packer1@nikura.com","date":"2025-09-27T11:56:39.5Z"},{"user":"packer1@nikura.com","date":"2025-09-27T11:50:47.98Z"},{"user":"packer1@nikura.com","date":"2025-09-27T11:44:22.567Z"},{"user":"packer1@nikura.com","date":"2025-09-27T11:43:08.07Z"},{"user":"packer1@nikura.com","date":"2025-09-27T11:40:58.273Z"},{"user":"packer1@nikura.com","date":"2025-09-27T11:37:47.857Z"},{"user":"packer9@nikura.com","date":"2025-09-27T11:36:55.87Z"},{"user":"packer9@nikura.com","date":"2025-09-27T11:30:46.51Z"},{"user":"packer1@nikura.com","date":"2025-09-27T11:27:08.553Z"},{"user":"packer9@nikura.com","date":"2025-09-27T11:17:46.507Z"},{"user":"packer1@nikura.com","date":"2025-09-27T11:13:12.85Z"},{"user":"packer1@nikura.com","date":"2025-09-27T11:13:02.477Z"},{"user":"packer1@nikura.com","date":"2025-09-27T11:11:51.27Z"},{"user":"packer9@nikura.com","date":"2025-09-27T11:11:47.423Z"},{"user":"packer1@nikura.com","date":"2025-09-27T11:10:46.27Z"},{"user":"packer1@nikura.com","date":"2025-09-27T11:08:26.013Z"},{"user":"packer1@nikura.com","date":"2025-09-27T11:07:08.713Z"},{"user":"packer9@nikura.com","date":"2025-09-27T11:07:12.57Z"},{"user":"packer1@nikura.com","date":"2025-09-27T11:05:44.83Z"},{"user":"packer1@nikura.com","date":"2025-09-27T11:04:06.717Z"},{"user":"packer9@nikura.com","date":"2025-09-27T11:03:52.427Z"},{"user":"packer1@nikura.com","date":"2025-09-27T11:02:52.44Z"},{"user":"packer9@nikura.com","date":"2025-09-27T11:01:03.817Z"},{"user":"packer1@nikura.com","date":"2025-09-27T11:00:37.797Z"},{"user":"packer1@nikura.com","date":"2025-09-27T10:58:31.643Z"},{"user":"packer9@nikura.com","date":"2025-09-27T10:57:47.227Z"},{"user":"packer1@nikura.com","date":"2025-09-27T10:55:32.663Z"},{"user":"packer1@nikura.com","date":"2025-09-27T10:53:28.813Z"},{"user":"packer9@nikura.com","date":"2025-09-27T10:52:33.93Z"},{"user":"packer9@nikura.com","date":"2025-09-27T10:50:10.757Z"},{"user":"packer1@nikura.com","date":"2025-09-27T10:49:42.42Z"},{"user":"packer9@nikura.com","date":"2025-09-27T10:47:47.967Z"},{"user":"packer1@nikura.com","date":"2025-09-27T10:46:07.927Z"},{"user":"packer9@nikura.com","date":"2025-09-27T10:44:12.93Z"},{"user":"packer1@nikura.com","date":"2025-09-27T10:41:53.26Z"},{"user":"packer9@nikura.com","date":"2025-09-27T10:41:03.89Z"},{"user":"packer9@nikura.com","date":"2025-09-27T10:39:12.837Z"},{"user":"packer1@nikura.com","date":"2025-09-27T10:38:50.37Z"},{"user":"packer9@nikura.com","date":"2025-09-27T10:37:49.507Z"},{"user":"packer9@nikura.com","date":"2025-09-27T10:36:04.29Z"},{"user":"packer1@nikura.com","date":"2025-09-27T10:35:43.43Z"},{"user":"packer9@nikura.com","date":"2025-09-27T10:31:49.037Z"},{"user":"packer1@nikura.com","date":"2025-09-27T10:28:40.353Z"},{"user":"packer9@nikura.com","date":"2025-09-27T10:23:23.987Z"},{"user":"packer9@nikura.com","date":"2025-09-27T10:19:30.12Z"},{"user":"packer9@nikura.com","date":"2025-09-27T10:17:15.917Z"},{"user":"packer9@nikura.com","date":"2025-09-27T10:14:07.867Z"},{"user":"packer1@nikura.com","date":"2025-09-27T10:10:06.64Z"},{"user":"packer1@nikura.com","date":"2025-09-27T10:08:30.46Z"},{"user":"packer9@nikura.com","date":"2025-09-27T10:07:30.397Z"},{"user":"packer1@nikura.com","date":"2025-09-27T10:06:01.457Z"},{"user":"packer1@nikura.com","date":"2025-09-27T10:04:35.09Z"},{"user":"packer9@nikura.com","date":"2025-09-27T10:04:30.53Z"},{"user":"packer1@nikura.com","date":"2025-09-27T10:03:28.937Z"},{"user":"packer9@nikura.com","date":"2025-09-27T10:02:15.53Z"},{"user":"packer1@nikura.com","date":"2025-09-27T10:02:08.02Z"},{"user":"packer1@nikura.com","date":"2025-09-27T10:00:21.557Z"},{"user":"packer9@nikura.com","date":"2025-09-27T09:58:57.29Z"},{"user":"packer1@nikura.com","date":"2025-09-27T09:57:18.367Z"},{"user":"packer9@nikura.com","date":"2025-09-27T09:56:58.633Z"},{"user":"packer9@nikura.com","date":"2025-09-27T09:55:17.633Z"},{"user":"packer1@nikura.com","date":"2025-09-27T09:55:10.057Z"},{"user":"packer9@nikura.com","date":"2025-09-27T09:53:25.48Z"},{"user":"packer1@nikura.com","date":"2025-09-27T09:53:01.64Z"},{"user":"packer9@nikura.com","date":"2025-09-27T09:49:49.463Z"},{"user":"packer1@nikura.com","date":"2025-09-27T09:49:12.347Z"},{"user":"packer9@nikura.com","date":"2025-09-27T09:46:31.167Z"},{"user":"packer9@nikura.com","date":"2025-09-27T09:44:23.593Z"},{"user":"packer1@nikura.com","date":"2025-09-27T09:43:42.927Z"},{"user":"packer9@nikura.com","date":"2025-09-27T09:43:02.883Z"},{"user":"packer9@nikura.com","date":"2025-09-27T09:40:59.567Z"},{"user":"packer9@nikura.com","date":"2025-09-27T09:39:03.797Z"},{"user":"packer9@nikura.com","date":"2025-09-27T09:37:57.273Z"},{"user":"packer1@nikura.com","date":"2025-09-27T09:37:45.14Z"},{"user":"packer9@nikura.com","date":"2025-09-27T09:36:30.33Z"},{"user":"packer9@nikura.com","date":"2025-09-27T09:35:23.49Z"},{"user":"packer1@nikura.com","date":"2025-09-27T09:31:11.24Z"},{"user":"packer1@nikura.com","date":"2025-09-27T09:20:42.447Z"},{"user":"packer1@nikura.com","date":"2025-09-27T09:12:09.407Z"},{"user":"packer1@nikura.com","date":"2025-09-27T08:58:32.087Z"},{"user":"packer1@nikura.com","date":"2025-09-27T08:46:17.863Z"},{"user":"packer1@nikura.com","date":"2025-09-27T08:45:24.657Z"},{"user":"packer1@nikura.com","date":"2025-09-27T08:44:32.237Z"},{"user":"packer1@nikura.com","date":"2025-09-27T08:43:22.97Z"},{"user":"packer1@nikura.com","date":"2025-09-27T08:41:42.317Z"},{"user":"packer1@nikura.com","date":"2025-09-27T08:40:12.56Z"},{"user":"packer1@nikura.com","date":"2025-09-27T08:38:29.397Z"},{"user":"packer1@nikura.com","date":"2025-09-27T08:35:52.59Z"},{"user":"packer1@nikura.com","date":"2025-09-27T08:31:06.93Z"},{"user":"packer1@nikura.com","date":"2025-09-27T08:28:42.323Z"},{"user":"packer1@nikura.com","date":"2025-09-27T08:25:47.527Z"},{"user":"packer1@nikura.com","date":"2025-09-27T08:20:33.633Z"},{"user":"packer1@nikura.com","date":"2025-09-27T08:16:59.32Z"},{"user":"packer1@nikura.com","date":"2025-09-27T08:11:03.957Z"},{"user":"packer1@nikura.com","date":"2025-09-27T08:06:50.617Z"},{"user":"packer1@nikura.com","date":"2025-09-27T08:05:08.397Z"},{"user":"packer1@nikura.com","date":"2025-09-27T08:03:37.363Z"},{"user":"packer1@nikura.com","date":"2025-09-27T08:02:17.563Z"},{"user":"packer1@nikura.com","date":"2025-09-27T08:00:55.793Z"},{"user":"packer1@nikura.com","date":"2025-09-27T07:57:09.79Z"}]; // [{user, date}]
+const HOUR_LABELS_ALL = ["Midnight-1am","1am-2am","2am-3am","3am-4am","4am-5am","5am-6am","6am-7am","7am-8am","8am-9am","9am-10am","10am-11am","11am-Noon","Noon-1pm","1pm-2pm","2pm-3pm","3pm-4pm","4pm-5pm","5pm-6pm","6pm-7pm","7pm-8pm","8pm-9pm","9pm-10pm","10pm-11pm","11pm-midnight"];
 
-  document.querySelectorAll('table tbody tr').forEach(row=>{
-    const u = row.getAttribute('data-user');
-    row.style.display = selected.includes(u)?'':'none';
+// DST-aware London hour
+function toLondonHour(d){
+  const date = (d instanceof Date) ? d : new Date(d);
+  return Number(new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/London',hour:'numeric',hour12:false}).format(date));
+}
+function esc(s=""){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+function ymd(date){ const d=new Date(date); const z=n=>String(n).padStart(2,'0'); return d.getFullYear()+"-"+z(d.getMonth()+1)+"-"+z(d.getDate()); }
+
+function buildAggregates(events){
+  const byUser = {};
+  for(const ev of events){
+    const hour = toLondonHour(ev.date);
+    const u = ev.user || "UNKNOWN";
+    if(!byUser[u]) byUser[u] = { total:0, hours:Array(24).fill(0), times:[] };
+    byUser[u].total++;
+    byUser[u].hours[hour]++;
+    byUser[u].times.push(new Date(ev.date));
+  }
+  const users = Object.keys(byUser).sort((a,b)=>byUser[b].total - byUser[a].total);
+  const hourUsed = Array(24).fill(false);
+  for(const u of users) byUser[u].hours.forEach((v,i)=>{ if(v>0) hourUsed[i]=true; });
+  const keptHourIdx = hourUsed.map((used,i)=> used? i:-1).filter(i=>i>=0);
+  const hourLabels = keptHourIdx.map(i=> HOUR_LABELS_ALL[i]);
+
+  const compactRows = [];
+  users.forEach(u=>{
+    compactRows.push({ userLabel:u, total:byUser[u].total, buckets: keptHourIdx.map(i=>byUser[u].hours[i]) });
+    compactRows.push({ userLabel:u+" Avg/min Order", total:"", buckets: keptHourIdx.map(i=>{
+      const times = byUser[u].times.filter(t=> toLondonHour(t)===i).sort((a,b)=>a-b);
+      if(times.length<=1) return 0;
+      const mins=(times[times.length-1]-times[0])/60000;
+      const avg=mins/(times.length-1);
+      if(!isFinite(avg)||avg<=0) return 0;
+      const m=Math.floor(avg), s=Math.round((avg-m)*60);
+      return `${m}m ${s}s`;
+    })});
   });
+  return { byUser, users, keptHourIdx, hourLabels, compactRows };
+}
 
+function buildCompactTable(headers, rows){
+  let html = '<table><thead><tr><th>User</th><th>Total Dispatched</th>';
+  headers.forEach(h=> html += '<th>'+esc(h)+'</th>');
+  html += '</tr></thead><tbody>';
+  rows.forEach(r=>{
+    const baseUser = String(r.userLabel).replace(' Avg/min Order','');
+    html += '<tr data-user="'+esc(baseUser)+'"><td>'+esc(r.userLabel)+'</td><td>'+esc(r.total||'')+'</td>';
+    r.buckets.forEach(v=> html += '<td>'+esc(v)+'</td>');
+    html += '</tr>';
+  });
+  html += '</tbody></table>';
+  return html;
+}
+
+function buildTotalsTable(users, byUser){
+  let html = '<table style="width:40%;margin-top:10px"><thead><tr><th>User</th><th>Total</th></tr></thead><tbody>';
+  users.forEach(u=> html += '<tr data-user="'+esc(u)+'"><td>'+esc(u)+'</td><td>'+byUser[u].total+'</td></tr>');
+  html += '</tbody></table>';
+  return html;
+}
+
+function buildGroupedBarSVG(rows, labels){
+  const padding={top:30,right:20,bottom:70,left:50};
+  const w=Math.max(700, labels.length*70), h=320;
+  const innerW=w-padding.left-padding.right, innerH=h-padding.top-padding.bottom;
+  const nGroups=labels.length, nSeries=rows.length;
+  const maxVal=Math.max(1, ...rows.flatMap(r=> r.buckets.map(v=> (typeof v==='number'?v:0))));
+  const groupWidth=innerW/nGroups, barGap=6, barWidth=Math.max(8,(groupWidth - barGap*(nSeries+1))/nSeries);
+  const colors=["#5B8FF9","#5AD8A6","#5D7092","#F6BD16","#E8684A","#6DC8EC","#9270CA","#FF9D4D"];
+  let svg = '<svg width="'+w+'" height="'+h+'" xmlns="http://www.w3.org/2000/svg"><g transform="translate('+padding.left+','+padding.top+')">';
+  const ticks=[0,0.25,0.5,0.75,1].map(t=>Math.round(t*maxVal));
+  for(const t of ticks){
+    const y=innerH-(t/maxVal)*innerH;
+    svg += '<line x1="0" y1="'+y+'" x2="'+innerW+'" y2="'+y+'" stroke="#eee"/>';
+    svg += '<text x="-6" y="'+(y+4)+'" text-anchor="end" font-size="11">'+t+'</text>';
+  }
+  labels.forEach((lab,gi)=>{
+    const x=gi*groupWidth+groupWidth/2;
+    svg += '<text x="'+x+'" y="'+(innerH+18)+'" text-anchor="middle" font-size="11">'+esc(lab)+'</text>';
+  });
+  labels.forEach((_,gi)=>{
+    const groupX=gi*groupWidth;
+    rows.forEach((r,si)=>{
+      const val=(typeof r.buckets[gi]==='number')?r.buckets[gi]:0;
+      const barH=(val/maxVal)*innerH;
+      const x=groupX+barGap+si*(barWidth+barGap);
+      const y=innerH-barH;
+      svg += '<rect data-series="'+si+'" x="'+x+'" y="'+y+'" width="'+barWidth+'" height="'+barH+'" fill="'+colors[si%colors.length]+'"/>';
+    });
+  });
+  svg += '</g></svg>';
+  return svg;
+}
+
+function applyUserFilter(){
+  const toggles = document.querySelectorAll('.user-toggle');
+  const selected = Array.from(toggles).filter(t=>t.checked).map(t=>t.dataset.user);
+  document.querySelectorAll('table tbody tr').forEach(row=>{
+    const u=row.getAttribute('data-user');
+    row.style.display = selected.includes(u)? '': 'none';
+  });
   document.querySelectorAll('svg g rect').forEach(rect=>{
-    const idx = rect.dataset.series;
+    const idx=rect.dataset.series;
     if(idx!==undefined){
-      const u = allUsers[idx];
-      rect.style.display = selected.includes(u)?'':'none';
+      const u=window.__currentUsers[Number(idx)];
+      rect.style.display = selected.includes(u)? '': 'none';
     }
   });
 }
-toggles.forEach(t=>t.addEventListener('change',filterDisplay));
-filterDisplay();
+
+function recalc(){
+  const from = document.getElementById('fromDate').value;
+  const to   = document.getElementById('toDate').value;
+  const fromTs = from ? new Date(from+'T00:00:00Z').getTime() : -Infinity;
+  const toTs   = to   ? new Date(to  +'T23:59:59.999Z').getTime() :  Infinity;
+
+  const filtered = RAW_EVENTS.filter(ev=>{
+    const ts = new Date(ev.date).getTime();
+    return ts>=fromTs && ts<=toTs;
+  });
+
+  const {byUser, users, keptHourIdx, hourLabels, compactRows} = (function(){
+    // Build aggregates from filtered
+    const bu = {};
+    for (const ev of filtered){
+      const hour = toLondonHour(ev.date);
+      const u = ev.user || "UNKNOWN";
+      if(!bu[u]) bu[u] = { total:0, hours:Array(24).fill(0), times:[] };
+      bu[u].total++; bu[u].hours[hour]++; bu[u].times.push(new Date(ev.date));
+    }
+    const us = Object.keys(bu).sort((a,b)=>bu[b].total - bu[a].total);
+    const used = Array(24).fill(false);
+    for(const u of us) bu[u].hours.forEach((v,i)=>{ if(v>0) used[i]=true; });
+    const keep = used.map((x,i)=>x?i:-1).filter(i=>i>=0);
+    const labels = keep.map(i=> HOUR_LABELS_ALL[i]);
+
+    const rows=[];
+    us.forEach(u=>{
+      rows.push({ userLabel:u, total:bu[u].total, buckets: keep.map(i=>bu[u].hours[i]) });
+      rows.push({ userLabel:u+" Avg/min Order", total:"", buckets: keep.map(i=>{
+        const times = bu[u].times.filter(t=> toLondonHour(t)===i).sort((a,b)=>a-b);
+        if(times.length<=1) return 0;
+        const mins=(times[times.length-1]-times[0])/60000;
+        const avg=mins/(times.length-1);
+        if(!isFinite(avg)||avg<=0) return 0;
+        const m=Math.floor(avg), s=Math.round((avg-m)*60);
+        return m+'m '+s+'s';
+      })});
+    });
+    // expose users for chart filter
+    window.__currentUsers = us.slice();
+    return { byUser: bu, users: us, keptHourIdx: keep, hourLabels: labels, compactRows: rows };
+  })();
+
+  document.getElementById('rangeInfo').textContent = 'Rows in range: '+filtered.length;
+  document.getElementById('table-wrapper').innerHTML = buildCompactTable(hourLabels, compactRows);
+
+  const orderRows = users.map(u=>({ user:u, buckets: keptHourIdx.map(i=> byUser[u].hours[i]) }));
+  const avgRows   = users.map(u=>({ user:u, buckets: keptHourIdx.map(i=>{
+    const times=(byUser[u].times||[]).filter(t=> toLondonHour(t)===i).sort((a,b)=>a-b);
+    if(times.length<=1) return 0;
+    const mins=(times[times.length-1]-times[0])/60000;
+    return mins/(times.length-1);
+  })}));
+  document.getElementById('chart-orders').innerHTML = buildGroupedBarSVG(orderRows, hourLabels);
+  document.getElementById('chart-avg').innerHTML    = buildGroupedBarSVG(avgRows, hourLabels);
+  document.getElementById('totals-table').innerHTML = (function(){
+    let html='<table style="width:40%;margin-top:10px"><thead><tr><th>User</th><th>Total</th></tr></thead><tbody>';
+    users.forEach(u=> html+='<tr data-user="'+esc(u)+'"><td>'+esc(u)+'</td><td>'+byUser[u].total+'</td></tr>');
+    html+='</tbody></table>'; return html;
+  })();
+
+  // Apply current user toggle state
+  applyUserFilter();
+}
+
+(function init(){
+  // default: last 10 days (inclusive)
+  const now = new Date();
+  const end = new Date(now.getTime());
+  const start = new Date(now.getTime() - 9*24*60*60*1000);
+  document.getElementById('fromDate').value = ymd(start);
+  document.getElementById('toDate').value   = ymd(end);
+
+  document.getElementById('applyBtn').addEventListener('click', recalc);
+  document.querySelectorAll('.user-toggle').forEach(t=> t.addEventListener('change', applyUserFilter));
+
+  recalc(); // initial draw
+})();
 </script>
 
 </body>
